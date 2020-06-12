@@ -90,6 +90,55 @@ catalina run
 2. Run on Server
 3. Insert valid URL - view your web.xml to see endpoint
 
+## Some Issues with Versioning
+1. Use Jersey version 2.7.0
+
+2. The dependencies that saved me:
+```xml
+ <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+            <!-- artifactId>jersey-container-servlet</artifactId -->
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+        </dependency>
+        <!-- uncomment this to get JSON support -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-binding</artifactId>
+        </dependency>
+        <dependency>
+		  <groupId>javax.xml.bind</groupId>
+		  <artifactId>jaxb-api</artifactId>
+		  <version>2.3.0</version>
+		</dependency>
+		 <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+	        <version>1.1</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.glassfish.jaxb</groupId>
+	        <artifactId>jaxb-runtime</artifactId>
+	        <version>2.3.0-b170127.1453</version>
+	    </dependency>
+    </dependencies>
+```
+
 
 
 # DEPRECATED, DOES NOT WORK, VERSION CONFLICT

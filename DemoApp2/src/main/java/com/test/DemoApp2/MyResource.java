@@ -1,14 +1,12 @@
-package com.test.RestApiDemo;
+package com.test.DemoApp2;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
-/**
- * Root resource (exposed at "hello" path)
- */
-@Path("hello")
+
+@Path("/hello")
 public class MyResource {
 
     /**
@@ -17,10 +15,9 @@ public class MyResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-	// http://localhost:8080/RestApiDemo/api/hello
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String helloWorld() {
-        return "Hello World Updated!";
+        return "Hello World!";
     }
 }
