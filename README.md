@@ -143,6 +143,74 @@ https://stackoverflow.com/questions/58250336/jersey-return-500-when-trying-retur
     </dependencies>
 ```
 
+# Deployment on Heroku
+
+https://devcenter.heroku.com/articles/java-webapp-runner
+
+## 1. Configure Maven to Download Webapp Runner
+In your pom.xml, update your plugins:
+```xml
+ <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.5.1</version>
+            <inherited>true</inherited>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                                <groupId>com.heroku</groupId>
+                                <artifactId>webapp-runner</artifactId>
+                                <version>9.0.30.0</version>
+                                <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+</plugins>
+```
+
+## 2. Build a .WAR file
+```bash
+mvn package
+```
+
+## 3. Test run your application
+Make sure it works on : http://localhost:8080/api/hello
+```bash
+java -jar target/dependency/webapp-runner.jar target/*.war
+```
+
+## 4. Create Procfile
+```Procfile
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
+```
+
+## 5. Heroku Stuff
+```bash
+heroku create java-api-demo
+
+git add .
+git commit -m "deploy"
+git push
+
+git push heroku master
+```
+
 # References
 
 https://howtodoinjava.com/jersey/solved-java-lang-classnotfoundexception-org-glassfish-jersey-servlet-servletcontainer/
