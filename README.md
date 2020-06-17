@@ -200,7 +200,7 @@ java -jar target/dependency/webapp-runner.jar target/*.war
 web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
 ```
 
-## 5. Heroku Stuff
+## 5.Deploy
 ```bash
 heroku create java-api-demo
 
@@ -210,6 +210,11 @@ git push
 
 git push heroku master
 ```
+
+## Test Deployed API Endpoints
+- https://java-api-demo.herokuapp.com/api/hello
+- https://java-api-demo.herokuapp.com/api/aliens
+
 
 # References
 
