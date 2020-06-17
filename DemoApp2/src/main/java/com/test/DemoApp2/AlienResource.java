@@ -1,34 +1,48 @@
 package com.test.DemoApp2;
 
-import java.util.Arrays;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("aliens")
 public class AlienResource {
 	
+	AlienRepository repo = new AlienRepository();
+	
 	@GET
-	@Path("/get")
-	@Produces(MediaType.APPLICATION_XML)
+	//@Produces(MediaType.APPLICATION_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Alien> getAlien()
 	{
 		System.out.println("Getting alien...");
-		Alien a1 = new Alien();
-		a1.setName("Ahmad");
-		a1.setPoints(60);
 		
-		System.out.println("Getting alien...");
-		Alien a2 = new Alien();
-		a2.setName("Mike");
-		a2.setPoints(58);
-		
-		List<Alien> aliens = Arrays.asList(a1, a2);
-		
-		return aliens;
+		return repo.getAliens();
 	}
-
+	
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Alien getAlien(@PathParam("id") int id)
+	{	
+		return repo.getAlien(id);
+	}
+	
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Alien createAlien(Alien a1)
+	{
+		
+		System.out.println(a1);
+		
+		repo.create(a1);
+		
+		return a1;
+	}
 }

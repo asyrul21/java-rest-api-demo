@@ -94,6 +94,10 @@ catalina run
 1. Use Jersey version 2.7.0
 
 2. The dependencies that saved me:
+
+https://stackoverflow.com/questions/58250336/jersey-return-500-when-trying-return-an-xml
+
+
 ```xml
  <dependencies>
             <dependency>
@@ -138,6 +142,12 @@ catalina run
 	    </dependency>
     </dependencies>
 ```
+
+# References
+
+https://howtodoinjava.com/jersey/solved-java-lang-classnotfoundexception-org-glassfish-jersey-servlet-servletcontainer/
+
+
 
 
 
