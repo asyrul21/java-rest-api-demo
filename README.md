@@ -216,6 +216,23 @@ git push heroku master
 - https://java-api-demo.herokuapp.com/api/aliens
 
 
+- POST Request
+1. Set Request Body
+Example Request Body (Raw)
+```json
+{
+    "columnFilter": "Country",
+    "fileType": "csv",
+    "outputFormat": "csv",
+    "rowFilter": "United Kingdom"
+}
+```
+
+2. Set Header properties
+- Content-Type : application/JSON
+- Accept application.JSON
+
+
 # References
 
 https://howtodoinjava.com/jersey/solved-java-lang-classnotfoundexception-org-glassfish-jersey-servlet-servletcontainer/
